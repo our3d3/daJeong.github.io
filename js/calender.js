@@ -79,11 +79,11 @@ let insertDate = (obj, endDate, yearMon, today) => {
     let tMon = today.getMonth();
     for(var i = 1; i <= endDate; i++){
         if(tYear == curYear && tMon == curMonth && curDate == i){
-            obj.innerHTML += '<div class="date" id="' + dateID + `" style="background-color: red;" onclick="show(this.id)">` + i + '</div>';
+            obj.innerHTML += '<div class="date" id="' + dateID + `" style="background-color: red;" onclick="show(this.id)"><u>` + i + '</u></div>';
         }else{
             let day = String(i).padStart(2, '0');
             dateID = yearMon + day;
-            obj.innerHTML += '<div class="date" id="' + dateID + '" onclick="show(this.id)">' + i + '</div>';
+            obj.innerHTML += '<div class="date" id="' + dateID + '" onclick="show(this.id)"><u>' + i + '</u></div>';
         }
     }
 }
