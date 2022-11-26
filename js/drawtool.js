@@ -36,8 +36,8 @@ class BaseDraw{
                     this.ctx.stroke();
                 }
             }else if(shape['shapetype'] == 'square'){
-                this.ctx.strokeStyle = shape['color'];
-                this.ctx.strokeRect(shape['sx'], shape['sy'], shape['x'], shape['y']);
+                this.ctx.fillStyle = shape['color'];
+                this.ctx.fillRect(shape['sx'], shape['sy'], shape['x'], shape['y']);
             }else if(shape['shapetype'] == 'circle'){
                 this.ctx.beginPath();
                 this.ctx.strokeStyle = shape['color'];
@@ -141,7 +141,8 @@ class SquareShape extends BaseDraw{
             return;
         }else{
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-            this.ctx.strokeRect(this.startX, this.startY, (curX - this.startX), (curY - this.startY));
+            this.ctx.globalAlpha = 0.2;
+            this.ctx.fillRect(this.startX, this.startY, (curX - this.startX), (curY - this.startY));
             this.data = {'shapetype': 'square', sx: this.startX, sy: this.startY, x: (curX - this.startX), y: (curY - this.startY), color: this.ctx.strokeStyle};        
         }
     }
@@ -157,6 +158,7 @@ class SquareShape extends BaseDraw{
 
     up(e){
         this.dragging = false;
+        this.ctx.globalAlpha = 1;
         if(Object.keys(this.data).length){
             this.savePos();
         }
@@ -166,6 +168,7 @@ class SquareShape extends BaseDraw{
 
     out(e){
         this.dragging = false;
+        this.ctx.globalAlpha = 1;
         this.data = [];
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.restorePos();
@@ -187,8 +190,9 @@ class CircleShape extends BaseDraw{
             this.r = this.getRadius(this.startX, this.startY, curX, curY);
             this.ctx.arc(this.startX, this.startY, this.r, 0, Math.PI * 2);
             this.ctx.fillStyle = this.ctx.strokeStyle;
-            this.ctx.fill();
+            this.ctx.globalAlpha = 0.2;
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            this.ctx.fill();
             this.data = {'shapetype': 'circle', sx: this.startX, sy: this.startY, r: this.r, color: this.ctx.strokeStyle}; 
         }
     }
@@ -213,6 +217,7 @@ class CircleShape extends BaseDraw{
 
     up(e){
         this.dragging = false;
+        this.ctx.globalAlpha = 1;
         if(Object.keys(this.data).length){
             this.savePos();
         }
@@ -222,6 +227,7 @@ class CircleShape extends BaseDraw{
 
     out(e){
         this.dragging = false;
+        this.ctx.globalAlpha = 1;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.restorePos();
     }
@@ -258,14 +264,15 @@ class TriAngle extends BaseDraw{
             this.ctx.beginPath();
             this.ctx.moveTo(curX, curY);
         }else{
-            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
             this.ctx.lineTo(this.startX, this.startY);
             let bottomLine = this.calcBottomLine(this.startX, curX);
             
             this.ctx.lineTo(bottomLine, curY);
             this.ctx.lineTo(curX, curY);
+            this.ctx.globalAlpha = 0.2;
             this.data = {"shapetype": "tri", "color": this.ctx.fillStyle, "x1": this.startX, "y1": this.startY, "x2": bottomLine, "y2": curY, "x3": curX, "y3": curY};
-            this.ctx.stroke();
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            this.ctx.fill();
         }
     }
 
@@ -284,6 +291,7 @@ class TriAngle extends BaseDraw{
 
     up(e){
         this.dragging = false;
+        this.ctx.globalAlpha = 1;
         if(Object.keys(this.data).length){
             this.savePos();
         }
@@ -294,6 +302,7 @@ class TriAngle extends BaseDraw{
 
     out(e){
         this.dragging = false;
+        this.ctx.globalAlpha = 1;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.restorePos();
     }
@@ -416,6 +425,7 @@ function setNote(){
         ctx.drawImage(img, 0, 0);
     }else{
         let img = document.getElementById("jul");
+        canvas.style.backgroundImage = "url('../images/jul.png')"
         data = {"shapetype": "image", "img": img};
         ctx.drawImage(img, 0, 0);
     }
