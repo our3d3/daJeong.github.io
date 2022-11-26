@@ -157,9 +157,7 @@ class SquareShape extends BaseDraw{
 
     up(e){
         this.dragging = false;
-        console.log(Object.keys(this.data).length)
         if(Object.keys(this.data).length){
-            console.log("asdfasdf" + this.data);
             this.savePos();
         }
         this.data = [];
@@ -341,7 +339,6 @@ function changeShapeCheck(n){
 }
 
 function initArray(arr){
-    console.log(arr);
     for(let i = 0; i < arr.length; i++){
         arr[i] = new Array();
     }
@@ -366,7 +363,6 @@ function changeColor(__color){
 function selectShape(num){
     let cur = 0;
     let isChanged = changeShapeCheck(num);
-    console.log(before);
 
     if(num == 0x01 && isChanged){
         document.getElementById(String(num)).style['font-size'] = "36px";
@@ -406,7 +402,6 @@ function selectShape(num){
     }
     
     before = num;
-    console.log(before);
 }
 
 function setNote(){
@@ -420,10 +415,8 @@ function setNote(){
         data = {"shapetype": "image", "img": img};
         ctx.drawImage(img, 0, 0);
     }else{
-        console.log(notetype);
         let img = document.getElementById("jul");
         data = {"shapetype": "image", "img": img};
-        console.log(img);
         ctx.drawImage(img, 0, 0);
     }
     saveShape.push(data);
@@ -470,7 +463,6 @@ function reset(){
 let gMove, gDown, gUp, gOut; 
 
 let curShape = 0x01;
-let gIdx = 0;
 let base = new BaseDraw();
 let freeshape = new FreeShape();
 let squareShape = new SquareShape();
