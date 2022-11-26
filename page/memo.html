@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/6079e538ba.js" crossorigin="anonymous"></script>
+        <link href="../css/canvas_style.css" rel="stylesheet">
+    </head>
+    <body theme="light">
+        <i class='fas fa-sun' id="light" onclick="toDark();"></i>
+        <i class='fas fa-moon' id="dark" onclick="toLight();"></i>
+        <div class="fadeout" id="fadeout"></div>
+        <div>           
+            <canvas class="Canvas" id="Canvas" width="500px" height="700px"></canvas>
+            
+            <!-- 여기에 캔버스 포함해서 원하는 도구들 넣기 -->
+        </div>
+        <div class="tool-set">
+            <i class='fas fa-pen' style='font-size:24px' onclick="selectShape(0x01);"></i>
+            <i class='far fa-square' style='font-size:24px' onclick="selectShape(0x02);"></i>
+            <i class='far fa-circle' style='font-size:24px' onclick="selectShape(0x04);"></i>
+            <i class='fas fa-i-cursor' style='font-size:24px' onclick="selectShape(0x06);"></i>
+            <i class='fas fa-play' style='font-size:24px' onclick="selectShape(0x08);"></i>
+            <i class='fas fa-reply' style='font-size:24px' onclick="redo();"></i>
+            <i class='fas fa-undo' style='font-size:24px' onclick="reset();"></i>
+        </div>
+        <div class="color-sel">
+            <div class="paint-list">
+                <div class="paint" style="background-color: black;" onclick="changeColor('black')"></div>
+                <div class="paint" style="background-color: white;" onclick="changeColor('white')"></div>
+                <div class="paint" style="background-color: red;" onclick="changeColor('red')"></div>
+                <div class="paint" style="background-color: blue;" onclick="changeColor('blue')"></div>
+                <div class="paint" style="background-color: yellow;" onclick="changeColor('yellow')"></div>
+                <div class="paint" style="background-color: green;" onclick="changeColor('green')"></div>
+                <div class="paint" style="background-color: purple;" onclick="changeColor('purple')"></div>
+                <div class="paint" style="background-color: gray;" onclick="changeColor('gray')"></div>
+                <div class="paint" style="background-color: navy;" onclick="changeColor('navy')"></div>
+            </div>
+        </div>
+        <div>
+            <button onclick="saveCanvas();">저장</button>
+            <button onclick="exitCanvas();">나가기</button>
+        </div>
+        <img class="image" id="muji" src="../images/muji.png">
+        <img class="image" id="jul" src="../images/jul.png">
+
+        <div class="fadein" id="fadein">
+            <form action="javascript:textShape.drawProcess();" method="post">
+                <textarea class="textInput" id="textInput"></textarea>
+                <input type="submit" class="BtnInput" value="입력"></button>
+            </form>
+        </div>
+        <script src="../js/drawtool.js"></script>
+        <script src="../js/canvas_tool.js"></script>
+        <script src="../js/base_function.js"></script>
+    </body>
+</html>

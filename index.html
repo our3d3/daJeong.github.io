@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/6079e538ba.js" crossorigin="anonymous"></script>
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body theme="light" onload="CreateDays();">
+        
+        <div id="fadeout" class="fadeout"></div>
+        <div id="cal" class="cal">
+            <div class="cal-title">
+                <i class='fas fa-angle-left' style='font-size:24px; cursor: pointer;' onclick="PrevMonth();"></i>
+                <div class="year-month"></div>
+                <i class='fas fa-angle-right' style='font-size:24px; cursor: pointer;' onclick="NextMonth();"></i>
+            </div>
+            <div class="days">
+                <div class="day" style="color: red">일</div>
+                <div class="day">월</div>
+                <div class="day">화</div>
+                <div class="day">수</div>
+                <div class="day">목</div>
+                <div class="day">금</div>
+                <div class="day" style="color: blue;">토</div>
+                <div class="dates"></div>
+            </div>
+        </div>
+        <i class='fas fa-sun' id="light" onclick="toDark();"></i>
+        <i class='fas fa-moon' id="dark" onclick="toLight();"></i>
+        <div id="fadein" class="fadein" theme="light">
+
+            <div class="template">
+                <div class="template-content">
+                    <h3>템플릿 선택</h3>
+                    <div class="notetype"> 
+                        <div>
+                            <input class="backtype" type="radio" id="whiteboard" name="note-sel" value="whiteboard" checked>
+                            <label class="whiteboard" for="whiteboard"></label>
+                            <p style="text-align: center;">무지</p>
+                        </div>
+                        <div>
+                            <input class="backtype" type="radio" id="note" name="note-sel" value="note">
+                            <label class="note" for="note"></label>
+                            <p style="text-align: center;">줄 노트</p>
+                        </div>        
+                        <!-- 여기에 캔버스 포함해서 원하는 도구들 넣기 -->
+                    </div>
+                    <button onclick="goMemo()">선택</button>
+                    <button onclick="hide()">닫기</button>
+                </div>
+            </div>
+        </div>
+        <script src="js/calender.js"></script>
+        <script src="js/base_function.js"></script>
+    </body>
+</html>

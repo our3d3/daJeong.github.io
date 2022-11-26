@@ -1,0 +1,154 @@
+/*****
+canvas용 CSS파일 (canvas_style.css)
+*****/
+html {
+  height: 100%;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--color);
+  margin: auto;
+  margin-top: 10%;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+body[theme="light"]{
+  --background-color: white;
+  --color: black;
+
+}
+
+body[theme="dark"]{
+  --background-color: #404040;
+  --color: white;
+}
+
+.Canvas {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 3px 5px grey, -1px -1px grey;
+}
+
+.tool-set {
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+i:active {
+  transform: scale(0.90);
+}
+
+.color-sel {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.paint-list {
+  display: flex;
+  margin-top: 30px;
+}
+
+.paint {
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.068);
+  border-radius: 25px;
+  margin-right: 5px;
+}
+.paint:active {
+  transform: scale(0.95);
+}
+
+.button {
+  all: unset;
+  border-radius: 8px;
+  background-color: white;
+  color: rgb(0, 0, 0);
+  padding: 5px 0px;
+  width: 80px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 12px;
+  margin-right: 5px;
+  box-shadow: 0 4px 6px rgb(117, 117, 117);
+  cursor: pointer;
+  border-radius: 25px;
+  margin-right: 5px;
+}
+.paint:active {
+  transform: scale(0.95);
+}
+
+.button {
+  all: unset;
+  border-radius: 8px;
+  background-color: white;
+  color: rgb(0, 0, 0);
+  padding: 5px 0px;
+  width: 80px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 12px;
+  margin-right: 5px;
+  box-shadow: 0 4px 6px rgb(117, 117, 117);
+  cursor: pointer;
+}
+.button:active {
+  transform: scale(0.95);
+}
+
+
+.fadeout {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #666666;
+  z-index: 1000;
+  opacity: 0.5;
+}
+
+.fadein {
+  display: none;
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  z-index: 1001;
+  border-radius: 25%;
+}
+
+.fadein > form {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.textInput{
+  width: 200px;
+  height: 50px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.BtnInput {
+  flex-direction: column;
+  justify-content: center;
+}
+
+#light {
+display: flex;
+font-size:36px
+}
+
+#dark {
+display: none;
+font-size: 36px;
+}
+
+.image {
+  display: none;
+}

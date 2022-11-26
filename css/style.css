@@ -1,0 +1,195 @@
+/******
+main 페이지를 위한 CSS style.css 파일
+******/
+
+@import url('https://fonts.googleapis.com/css2?family=Sunflower&display=swap');
+html {
+    height: 100%;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--color);
+    margin: auto;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+body[theme="dark"] {
+    --background-color: #404040;
+    --color: white;
+}
+
+body[theme="light"]  {
+    --background-color: white;
+    --color: black;
+}
+
+.cal {
+    display: flex;
+    width: 1000px;
+    height: 700px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.cal-title {
+    display: flex;
+    align-items: center;
+}
+
+.year-month {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-left: 30px;
+    padding-right: 30px;
+
+}
+
+.days {
+    width: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: wrap;
+    margin: auto;
+}
+
+.day {
+    width: calc(100% / 8);
+    height: 100px;
+    border: 1px;
+    border-color: black;
+    border-style: solid;
+    text-align: center;
+    font-family: 'Sunflower', sans-serif;
+    font-size: 24px;
+}
+
+.dates {
+    width: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: wrap;
+    margin: auto;
+}
+
+.date {
+    width: calc(100% / 8);
+    height: 100px;
+    border: 1px;
+    border-color: black;
+    border-style: solid;
+    text-align: center;
+    font-family: 'Sunflower' sans-serif;
+    font-size: 24px;
+}
+
+.fadeout {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #666666;
+    z-index: 1000;
+    opacity: 0.5;
+}
+
+.fadein {
+    display: none;
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    z-index: 1001;
+    border-radius: 25%;
+}
+
+.template {
+    display: flex;
+    background-color: var(--background-color);
+    color: var(--color);
+    width: 500px;
+    height: 300px;
+    padding: 50px;
+    border-radius: 15%;
+}
+
+.template-content {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.template-content > h3 {
+    margin: 0 auto;
+}
+
+#light {
+    display: flex;
+    font-size:36px
+}
+
+#dark {
+    display: none;
+    font-size: 36px;
+}
+
+.notetype{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.notetype label{
+    margin: 0 auto;
+}
+
+.notetype > div {
+    margin-top: 10px;
+    padding: 10px
+}
+
+input[type=radio] {
+    display: none;
+}
+
+.whiteboard{
+    margin: 0 auto;
+    padding: 10px;
+    content: url("../images/muji.png");
+    width: 80px;
+    height: 100px;
+    border: 1px;
+    border-color: black;
+    border-style: solid;
+}
+
+.note{
+    margin: 0 auto;
+    padding: 10px;
+    content: url("../images/jul.png");
+    width: 80px;
+    height: 100px;
+    border: 1px;
+    border-color: black;
+    border-style: solid;
+}
+
+.backtype {
+    opacity: 0;
+}
+
+.backtype:checked + label{
+    border: 3px;
+    border-color: orangered;
+    border-style: solid;
+}

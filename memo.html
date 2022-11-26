@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/6079e538ba.js" crossorigin="anonymous"></script>
+        <link href="/Team_project2/master/Web_Programming_Project/css/canvas_style.css" rel="stylesheet">
+    </head>
+    <h1>- M E M O -</h1>
+    <body>
+        <div>           
+            <canvas class="Canvas" id="Canvas" width="500" height="500"></canvas>
+            
+            <!-- 여기에 캔버스 포함해서 원하는 도구들 넣기 -->
+        </div>
+        <div class="tool-set">
+            <i class='fas fa-pen' style='font-size:24px' onclick="selectShape(0x01);"></i>
+            <i class='far fa-square' style='font-size:24px' onclick="selectShape(0x02);"></i>
+            <i class='far fa-circle' style='font-size:24px'></i>
+        </div>
+        <div class="buttons">
+          <button class="button" onclick="exitCanvas();">SAVE</button>
+          <button class="button">SAVE</button>
+          <button class="button">SAVE</button>
+      </div>
+        <div class="color-sel">
+            <div class="paint-list">
+              <div class="paint" style="background-color: black;"></div>
+              <div class="paint" style="background-color: white;"></div>
+                <div class="paint" style="background-color: rgb(255, 83, 83);"></div>
+                <div class="paint" style="background-color: rgb(255, 175, 37);"></div>
+                <div class="paint" style="background-color: rgb(249, 255, 75);"></div>
+                <div class="paint" style="background-color: rgb(117, 255, 89);"></div>
+                <div class="paint" style="background-color: rgb(62, 123, 255);"></div>
+                <div class="paint" style="background-color: rgb(197, 89, 255);"></div>
+                <div class="paint" style="background-color: rgb(255, 105, 185);"></div>
+            </div>
+        </div>
+        <script src="/Team_project2/master/Web_Programming_Project/js/drawtool.js"></script>
+        <script src="/Team_project2/master/Web_Programming_Project/js/canvas_tool.js"></script>
+    </body>
+</html>
