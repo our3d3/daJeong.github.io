@@ -1,10 +1,12 @@
+let today = new Date();
 let curYear;
 let curMonth;
+let curDate;
 
 function CreateDays(){
     let obj = document.querySelector(".dates");
     let title = document.querySelector(".year-month");
-    let today = new Date();
+    
     let startMonth = new Date(today.getFullYear(), today.getMonth());
     let endMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
     let endDate = endMonth.getDate();
@@ -12,13 +14,13 @@ function CreateDays(){
     let endDay = endMonth.getDay();
     curYear = today.getFullYear();
     curMonth = today.getMonth();
-    curDay = today.getDate();
+    curDate = today.getDate();
 
     dateID = String(curYear) + String(curMonth + 1).padStart(2, "0");
 
     title.innerHTML += '<div><h1>' + curYear + '년 ' + (curMonth+1) + '월</h1></div>'
     blank1(obj, startDay);
-    insertDate(obj, endDate, dateID, curDay);
+    insertDate(obj, endDate, dateID, today);
     blank2(obj, endDay);
 }
 
@@ -43,7 +45,7 @@ function NextMonth(){
     dateID = String(curYear) + String(curMonth + 1).padStart(2, "0");
 
     blank1(obj, startDay);
-    insertDate(obj, endDate, dateID, -1);
+    insertDate(obj, endDate, dateID, today);
     blank2(obj, endDay);
 }
 
@@ -68,13 +70,15 @@ function PrevMonth(){
     dateID = String(curYear) + String(curMonth + 1).padStart(2, "0");
 
     blank1(obj, startDay);
-    insertDate(obj, endDate, dateID, -1);
+    insertDate(obj, endDate, dateID, today);
     blank2(obj, endDay);
 }
 
 let insertDate = (obj, endDate, yearMon, today) => {
+    let tYear = today.getFullYear();
+    let tMon = today.getMonth();
     for(var i = 1; i <= endDate; i++){
-        if(today == i){
+        if(tYear == curYear && tMon == curMonth && curDate == i){
             obj.innerHTML += '<div class="date" id="' + dateID + `" style="background-color: red;" onclick="show(this.id)">` + i + '</div>';
         }else{
             let day = String(i).padStart(2, '0');
