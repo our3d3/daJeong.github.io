@@ -12,12 +12,13 @@ function CreateDays(){
     let endDay = endMonth.getDay();
     curYear = today.getFullYear();
     curMonth = today.getMonth();
+    curDay = today.getDate();
 
     dateID = String(curYear) + String(curMonth + 1).padStart(2, "0");
 
     title.innerHTML += '<div><h1>' + curYear + '년 ' + (curMonth+1) + '월</h1></div>'
     blank1(obj, startDay);
-    insertDate(obj, endDate, dateID);
+    insertDate(obj, endDate, dateID, curDay);
     blank2(obj, endDay);
 }
 
@@ -42,7 +43,7 @@ function NextMonth(){
     dateID = String(curYear) + String(curMonth + 1).padStart(2, "0");
 
     blank1(obj, startDay);
-    insertDate(obj, endDate, dateID);
+    insertDate(obj, endDate, dateID, -1);
     blank2(obj, endDay);
 }
 
@@ -67,15 +68,19 @@ function PrevMonth(){
     dateID = String(curYear) + String(curMonth + 1).padStart(2, "0");
 
     blank1(obj, startDay);
-    insertDate(obj, endDate, dateID);
+    insertDate(obj, endDate, dateID, -1);
     blank2(obj, endDay);
 }
 
-let insertDate = (obj, endDate, yearMon) => {
+let insertDate = (obj, endDate, yearMon, today) => {
     for(var i = 1; i <= endDate; i++){
-        let day = String(i).padStart(2, '0');
-        dateID = yearMon + day;
-        obj.innerHTML += '<div class="date" id="' + dateID + '" onclick="show(this.id)">' + i + '</div>';
+        if(today == i){
+            obj.innerHTML += '<div class="date" id="' + dateID + `" style="background-color: red;" onclick="show(this.id)">` + i + '</div>';
+        }else{
+            let day = String(i).padStart(2, '0');
+            dateID = yearMon + day;
+            obj.innerHTML += '<div class="date" id="' + dateID + '" onclick="show(this.id)">' + i + '</div>';
+        }
     }
 }
 let blank1 = (obj, startDay) => {for(var i = 0; i < startDay; i++) obj.innerHTML += '<div class="date"></div>';}

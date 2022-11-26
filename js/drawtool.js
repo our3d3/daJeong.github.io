@@ -29,7 +29,6 @@ class BaseDraw{
             if(shape['shapetype'] == 'free'){
                 shape = shape['data'];
                 this.ctx.beginPath();
-                console.log(shape[0]['color']);
                 this.ctx.strokeStyle = shape[0]['color'];
                 this.ctx.moveTo(shape[0]['x'], shape[0]['y']);
                 for(let j in shape){
@@ -110,6 +109,7 @@ class FreeShape extends BaseDraw{
     down(e){
         this.dragging = true;
         saveLineShape = [];
+        this.tmp = [];
     }
 
     savePos(){
@@ -118,8 +118,7 @@ class FreeShape extends BaseDraw{
 
     up(e){
         this.dragging = false;
-        //this.tmp = {'shapetype': 'free', 'data': saveLineShape}
-        if(this.tmp){
+        if(Object.keys(this.tmp).length){
             saveShape.push(this.tmp);
         }
     }
@@ -151,14 +150,16 @@ class SquareShape extends BaseDraw{
         this.dragging = true;
         this.startX = e.offsetX;
         this.startY = e.offsetY;
+        this.data = [];
     }
 
     savePos(){ saveShape.push(this.data); } 
 
     up(e){
         this.dragging = false;
-        if(this.data.lenght == 0){
-            console.log(this.data);
+        console.log(Object.keys(this.data).length)
+        if(Object.keys(this.data).length){
+            console.log("asdfasdf" + this.data);
             this.savePos();
         }
         this.data = [];
@@ -182,17 +183,18 @@ class CircleShape extends BaseDraw{
     drawProcess(curX, curY){
         if(!this.dragging){
             this.ctx.beginPath();
-            this.ctx.moveTo(curX, curY);
+            //this.ctx.moveTo(curX, curY);
+            return;
         }else{
-            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
             this.r = this.getRadius(this.startX, this.startY, curX, curY);
             this.ctx.arc(this.startX, this.startY, this.r, 0, Math.PI * 2);
             this.ctx.fillStyle = this.ctx.strokeStyle;
-            this.ctx.stroke();
             this.ctx.fill();
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
             this.data = {'shapetype': 'circle', sx: this.startX, sy: this.startY, r: this.r, color: this.ctx.strokeStyle}; 
         }
     }
+
 
     getRadius(x, y, dx, dy){
         let a = Math.pow(dx - x, 2);
@@ -208,11 +210,15 @@ class CircleShape extends BaseDraw{
         this.dragging = true;
         this.startX = e.offsetX;
         this.startY = e.offsetY;
+        this.data = [];
     }
 
     up(e){
-        this.dragging = false;     
-        this.savePos();
+        this.dragging = false;
+        if(Object.keys(this.data).length){
+            this.savePos();
+        }
+        this.data = [];
         this.restorePos();
     }
 
@@ -254,14 +260,14 @@ class TriAngle extends BaseDraw{
             this.ctx.beginPath();
             this.ctx.moveTo(curX, curY);
         }else{
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
             this.ctx.lineTo(this.startX, this.startY);
             let bottomLine = this.calcBottomLine(this.startX, curX);
-
+            
             this.ctx.lineTo(bottomLine, curY);
             this.ctx.lineTo(curX, curY);
             this.data = {"shapetype": "tri", "color": this.ctx.fillStyle, "x1": this.startX, "y1": this.startY, "x2": bottomLine, "y2": curY, "x3": curX, "y3": curY};
-            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-            this.ctx.fill();
+            this.ctx.stroke();
         }
     }
 
@@ -272,16 +278,20 @@ class TriAngle extends BaseDraw{
     savePos(){ saveShape.push(this.data); }
 
     down(e){
-        console.log("!!!!!!!!");
         this.dragging = true;
         this.startX = e.offsetX;
         this.startY = e.offsetY;
+        this.data = [];
     }
 
     up(e){
         this.dragging = false;
-        this.savePos();
+        if(Object.keys(this.data).length){
+            this.savePos();
+        }
+        this.data = [];
         this.restorePos();
+
     }
 
     out(e){
@@ -354,35 +364,51 @@ function changeColor(__color){
 }
 
 function selectShape(num){
-    let before = 0;
+    let cur = 0;
     let isChanged = changeShapeCheck(num);
+    console.log(before);
+
     if(num == 0x01 && isChanged){
+        document.getElementById(String(num)).style['font-size'] = "36px";
+        document.getElementById(String(before)).style['font-size'] = "24px";
         removeShapeEvent();
-        before = parseInt(num / 2);
-        setShapeEvent(before);
+        cur = parseInt(num / 2);
+        setShapeEvent(cur);
         addShapeEvent();
     }else if(num == 0x02 && isChanged){
+        document.getElementById(String(num)).style['font-size'] = "36px";
+        document.getElementById(String(before)).style['font-size'] = "24px";
         removeShapeEvent();
-        before = parseInt(num / 2);
-        setShapeEvent(before);
+        cur = parseInt(num / 2);
+        setShapeEvent(cur);
         addShapeEvent();
     }else if(num == 0x04 && isChanged){
+        document.getElementById(String(num)).style['font-size'] = "36px";
+        document.getElementById(String(before)).style['font-size'] = "24px";
         removeShapeEvent();
-        before = parseInt(num / 2);
-        setShapeEvent(before);
+        cur = parseInt(num / 2);
+        setShapeEvent(cur);
         addShapeEvent();
     }else if(num == 0x06 && isChanged){
+        document.getElementById(String(num)).style['font-size'] = "36px";
+        document.getElementById(String(before)).style['font-size'] = "24px";
         removeShapeEvent();
-        before = parseInt(num / 2);
-        setShapeEvent(before);
+        cur = parseInt(num / 2);
+        setShapeEvent(cur);
         addShapeEvent();
     }else if(num == 0x08 && isChanged){
+        document.getElementById(String(num)).style['font-size'] = "36px";
+        document.getElementById(String(before)).style['font-size'] = "24px";
         removeShapeEvent();
-        before = parseInt(num / 2);
-        setShapeEvent(before);
+        cur = parseInt(num / 2);
+        setShapeEvent(cur);
         addShapeEvent();
     }
+    
+    before = num;
+    console.log(before);
 }
+
 function setNote(){
     let notetype = window.localStorage.getItem("notetype");
     let canvas = document.getElementById("Canvas");
@@ -424,7 +450,6 @@ function dateWrite(){
 }
 
 function redo(){
-    console.log(saveShape);
     if(saveShape.length == 1){
         alert("더 이상 되돌릴 수 없습니다!");
     }else{
@@ -454,6 +479,7 @@ let textShape = new TextShape();
 let triAngle = new TriAngle();
 let dateStamp = [];
 let backGroundImg = [];
+let before = 0;
 
 let shapeList = {0: freeshape, 1: squareShape, 2: circleShape, 3: textShape, 4: triAngle};
 let saveShape = Array();
@@ -462,7 +488,9 @@ let saveLineShape = Array(1);
 
 //saveLineShape = initArray(saveLineShape);
 
-setShapeEvent(0)
+document.getElementById("1").style['font-size'] = "36px";
+setShapeEvent(0);
 addShapeEvent();
+before = 1;
 setNote();
 dateWrite();

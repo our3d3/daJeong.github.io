@@ -16,13 +16,13 @@
             <!-- 여기에 캔버스 포함해서 원하는 도구들 넣기 -->
         </div>
         <div class="tool-set">
-            <i class='fas fa-pen' style='font-size:24px' onclick="selectShape(0x01);"></i>
-            <i class='far fa-square' style='font-size:24px' onclick="selectShape(0x02);"></i>
-            <i class='far fa-circle' style='font-size:24px' onclick="selectShape(0x04);"></i>
-            <i class='fas fa-i-cursor' style='font-size:24px' onclick="selectShape(0x06);"></i>
-            <i class='fas fa-play' style='font-size:24px' onclick="selectShape(0x08);"></i>
-            <i class='fas fa-reply' style='font-size:24px' onclick="redo();"></i>
-            <i class='fas fa-undo' style='font-size:24px' onclick="reset();"></i>
+            <i class='fas fa-pen' id='1' onclick="selectShape(0x01);"></i>
+            <i class='far fa-square' id='2' onclick="selectShape(0x02);"></i>
+            <i class='far fa-circle' id='4' onclick="selectShape(0x04);"></i>
+            <i class='fas fa-i-cursor' id='6' onclick="selectShape(0x06);"></i>
+            <i class='fas fa-play' id='8' onclick="selectShape(0x08);"></i>
+            <i class='fas fa-reply' onclick="redo();"></i>
+            <i class='fas fa-undo' onclick="reset();"></i>
         </div>
         <div class="color-sel">
             <div class="paint-list">
@@ -46,8 +46,11 @@
 
         <div class="fadein" id="fadein">
             <form action="javascript:textShape.drawProcess();" method="post">
-                <textarea class="textInput" id="textInput"></textarea>
-                <input type="submit" class="BtnInput" value="입력"></button>
+                <div  class="textInput" >
+                    <textarea id="textInput"></textarea>
+                    <input type="submit" class="BtnInput" value="입력">
+                    <button onclick="hide();">취소</button>
+                </div>
             </form>
         </div>
         <script src="../js/drawtool.js"></script>
